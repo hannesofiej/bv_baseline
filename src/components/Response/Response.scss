@@ -1,0 +1,71 @@
+@import "../../assets/styles/variables.scss";
+
+.responses {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.response {
+  background: $color-bg-1;
+  border-radius: 4px;
+  width: 80%;
+  padding: 20px;
+  margin: 10px;
+  align-self: flex-end;
+  position: relative;
+}
+.response:after {
+  position: absolute;
+  right: -10px;
+  top: calc(50% - 10px);
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent $color-bg-1;
+}
+
+.response__text {
+  padding: 10px 0;
+}
+.response__btn {
+  position: relative;
+}
+.response__feedback {
+  display: none;
+  position: relative;
+  padding: 10px 0;
+  /*border-top: 1px solid black;*/
+  outline: none;
+  background: transparent;
+  padding: 10px 0;
+  border-color: transparent;
+  display: block;
+  position: relative;
+  width: 100%;
+  text-align: left;
+}
+.response__feedback__toggle {
+}
+.response__feedback:focus,
+.response__feedback:active {
+  outline: none;
+}
+.response__feedback__title {
+  font-size: 20px;
+}
+.response--selected .response__feedback {
+  display: block;
+}
+
+.response__feedback.closed .response__feedback__text {
+  display: none;
+}
+.response__btn {
+  float: right;
+}
+.response__actions {
+  text-align: center;
+}

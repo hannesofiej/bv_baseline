@@ -1,0 +1,20 @@
+.icon {
+  float: right;
+  margin-left: 5px;
+  &--plane {
+    transform: rotate(45deg);
+    height: 35px;
+    width: 35px;
+    position: relative;
+    fill: #fff;
+    background: $color-bg-2;
+    border-radius: 50%;
+    svg {
+      height: 30px;
+      width: 30px;
+      position: relative;
+      right: 2px;
+      top: 4px;
+    }
+  }
+}

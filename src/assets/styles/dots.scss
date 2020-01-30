@@ -1,0 +1,63 @@
+@import "./variables.scss";
+
+.chat-dot {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  margin-left: 10px;
+  border-radius: 5px;
+  background: $color-dot-1;
+  animation: dotFlashing 1s infinite linear alternate;
+  animation-delay: 0.5s;
+}
+
+.chat-dot::before,
+.chat-dot::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 0;
+}
+
+.chat-dot::before {
+  left: -15px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: $color-dot-1;
+  animation: dotFlashing 1s infinite alternate;
+  animation-delay: 0s;
+}
+
+.chat-dot::after {
+  left: 15px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: $color-dot-1;
+  animation: dotFlashing 1s infinite alternate;
+  animation-delay: 1s;
+}
+.chat-dots-wrap {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin: 10px 0;
+}
+.chat-dots {
+  border-radius: 20px;
+  background-color: $color-dots-bg;
+  padding: 10px;
+  width: 50px;
+  margin: 0 10px;
+}
+
+@keyframes dotFlashing {
+  0% {
+    background-color: $color-dot-1;
+  }
+  50%,
+  100% {
+    background-color: $color-dot-2;
+  }
+}

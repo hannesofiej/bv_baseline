@@ -1,0 +1,61 @@
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+h1 {
+  font-weight: 700;
+  font-size: 30px;
+  color: #082c48;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: 25px;
+}
+h3 {
+  font-weight: 400;
+  font-size: 1.4rem;
+}
+.container {
+  max-width: none;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.chevron::before {
+  border-style: solid;
+  border-width: 3px 3px 0 0;
+  content: "";
+  display: inline-block;
+
+  right: 0;
+  position: absolute;
+  top: 15px;
+  transform: rotate(-45deg);
+  vertical-align: top;
+  width: 15px;
+  height: 15px;
+}
+
+.chevron.right:before {
+  left: 0;
+  transform: rotate(45deg);
+}
+
+.chevron.bottom:before {
+  top: 10px;
+  transform: rotate(135deg);
+}
+
+.chevron.left:before {
+  left: 10px;
+  transform: rotate(-135deg);
+}
+
+.csv {
+  text-align: left;
+}

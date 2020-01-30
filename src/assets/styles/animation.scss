@@ -1,0 +1,110 @@
+.statement {
+  animation-duration: 0.1s;
+  animation-fill-mode: forwards;
+  animation-delay: 0s;
+  animation-timing-function: ease-in;
+  animation-name: fadein;
+
+  .left & {
+    animation-name: slideinleft;
+    transform: translateX(-110%);
+  }
+
+  .bottom & {
+    animation-name: slideup;
+    transform: translateX(0);
+  }
+}
+
+.response {
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in;
+
+  animation-delay: 0s;
+
+  .statement-section--init & {
+    animation-name: fadein;
+    .left & {
+      animation-name: slideinright;
+      transform: translateX(110%);
+    }
+
+    .bottom & {
+      animation-name: slideup;
+      transform: translateX(0);
+      transform: translateY(500%);
+    }
+  }
+
+  &--not-selected {
+    .statement-section--selected & {
+      animation-name: fadeout;
+      animation-fill-mode: forwards;
+      animation-timing-function: ease-in;
+      animation-duration: 0.1s;
+    }
+  }
+}
+
+.statement-section--changed .response {
+  display: block;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    max-height: 0;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+@keyframes slideoutright {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(110%);
+    height: 0;
+    padding: 0;
+  }
+}
+
+@keyframes slideinright {
+  from {
+    transform: translateX(110%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideinleft {
+  from {
+    transform: translateX(-110%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideup {
+  from {
+    transform: translateY(500%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}

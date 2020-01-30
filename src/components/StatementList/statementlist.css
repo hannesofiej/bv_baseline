@@ -1,0 +1,15 @@
+.statement-list {
+  height: 100%;
+  overflow: scroll;
+  position: relative;
+  /* display: flex;
+  flex-direction: column; */
+  overflow: auto;
+  flex-grow: 1;
+}
+.statement-list.bottom {
+  justify-content: flex-end;
+}
+.actions {
+  text-align: center;
+}

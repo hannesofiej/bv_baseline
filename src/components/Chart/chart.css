@@ -1,0 +1,23 @@
+.charts {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  text-align: center;
+}
+.chart-wrapper-title {
+  margin: 20px;
+}
+.chart-wrapper {
+  margin: 20px;
+}
+.chart__container {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.chart__text {
+  /*max-width: 50%;*/
+}
+.chart__container__total {
+  margin: 10px 0;
+}

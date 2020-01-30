@@ -1,0 +1,33 @@
+@import "../../assets/styles/variables.scss";
+
+.statement {
+  background: $color-bg-2;
+  color: #fff;
+  border-radius: 4px;
+  width: 80%;
+  margin: 10px;
+  padding: 20px;
+  position: relative;
+}
+
+.statement:after {
+  position: absolute;
+  left: -10px;
+  top: calc(50% - 10px);
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent $color-bg-2 transparent transparent;
+}
+
+.statement__timestamp {
+  display: none;
+}
+
+.statement-section {
+  display: flex;
+  flex-direction: column;
+}
