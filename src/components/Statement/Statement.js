@@ -125,7 +125,6 @@ class Statement extends Component {
       ? "row statement-section statement-section--changed"
       : "row statement-section  statement-section--init";
 
-    //console.log(timestamp);
     return (
       <div className={sectionClass} ref={this.myRef}>
         {this.state.chatting ? (

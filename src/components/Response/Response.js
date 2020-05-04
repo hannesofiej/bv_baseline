@@ -33,15 +33,12 @@ class Response extends Component {
     this._isMounted = false;
   };
   toggle = event => {
-    //let feedback = event.target;
     if (this._isMounted) {
       this.setState(
         {
           toggled: !this.state.toggled
         },
-        () => {
-          //console.log(feedback);
-        }
+        () => {}
       );
     }
   };
@@ -53,8 +50,6 @@ class Response extends Component {
           selected: !this.state.selected
         },
         () => {
-          //console.log(this.state.selected);
-
           this.props.onClick(this.state.id);
         }
       );

@@ -26,14 +26,15 @@ class ChartView extends React.Component {
       responses: [],
       responseMap: [],
       nodata: true,
-      statements: []
+      statements: [],
+      appId: "",
+      title: ""
     };
     this.convertToMap = this.convertToMap.bind(this);
     this.setData = this.setData.bind(this);
   }
   componentDidMount = () => {
     this.getPublicData();
-
     this.setInterval = window.setInterval(() => {
       this.getData();
     }, 3000);
@@ -49,9 +50,10 @@ class ChartView extends React.Component {
         return response.json();
       })
       .then(json => {
-        //console.log(json);
         this.setState(
           {
+            appId: json.data.appId,
+            title: json.data.title,
             statements: json.data.statements
           },
           () => {
@@ -62,8 +64,6 @@ class ChartView extends React.Component {
   }
 
   getData = () => {
-    //console.log("getting data");
-
     axios
       .get(CONSTANTS.URL_RESPONSES)
       .then(response => {
@@ -82,20 +82,20 @@ class ChartView extends React.Component {
   };
 
   setData = data => {
-    //console.log("updating data");
+    let filteredResponses = data.filter(
+      response => response.text === "app-" + this.state.appId
+    );
+
     this.setState(
       {
-        responses: data,
+        responses: filteredResponses,
         nodata: false
       },
       () => {
         const map = this.convertToMap();
-        this.setState(
-          {
-            responseMap: map
-          }
-          //() => console.log(this.state)
-        );
+        this.setState({
+          responseMap: map
+        });
       }
     );
   };
@@ -205,10 +205,8 @@ class ChartView extends React.Component {
   };
 
   convertToMap = () => {
-    //console.log(this.state.responses);
     const ids = this.state.responses.map(response => response.statement);
     const distinctIds = [...new Set(ids)];
-    //console.log(ids, distinctIds);
 
     let responseMap = [];
     distinctIds.sort().forEach(id => {
@@ -220,13 +218,10 @@ class ChartView extends React.Component {
       const finalChoices = this.getFinalChoices(responses);
       const changedChoices = this.getChangedChoices(responses);
 
-      //console.log(initialChoices);
-
-      //const text = this.state.statements[id].text;
       const statement = this.state.statements.filter(
         statement => statement.id === id
       );
-      //console.log(id, statement[0].text);
+
       responseMap.push({
         id: id,
         statement: statement[0],
@@ -242,7 +237,6 @@ class ChartView extends React.Component {
 
   render() {
     const map = this.state.responseMap;
-    //const responses = this.state.responses;
 
     return (
       <>
@@ -252,7 +246,7 @@ class ChartView extends React.Component {
           </div>
         ) : (
           <div>
-            <h1 className="chart-wrapper-title">Dette er en h1</h1>
+            <h1 className="chart-wrapper-title">{this.state.title}</h1>
             {Object.keys(map).map(index => (
               <div className="chart-wrapper" key={map[index].id}>
                 <h2>Henvendelse {map[index].id}</h2>

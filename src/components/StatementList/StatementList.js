@@ -15,13 +15,12 @@ class StatementList extends Component {
 
     this.state = {
       statements: [],
+      appId: "",
       progress: 1,
-      //response,
       collectedResponses: [],
       allDone: false
     };
 
-    //this.fetchStatements = this.fetchStatements.bind(this);
     this.onResponseSelected = this.onResponseSelected.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.progress = this.progress.bind(this);
@@ -29,8 +28,6 @@ class StatementList extends Component {
 
   componentDidMount() {
     this._isMounted = true;
-    //this.fetchStatements();
-
     this.getPublicData();
   }
 
@@ -44,20 +41,12 @@ class StatementList extends Component {
         return response.json();
       })
       .then(json => {
-        console.log(json);
         this.setState({
+          appId: json.data.appId,
           statements: json.data.statements
         });
       });
   }
-
-  /* fetchStatements = () => {
-    if (this._isMounted) {
-      this.setState({
-        statements: response.data.statements
-      });
-    }
-  }; */
 
   onResponseClicked = response => {
     const collectedResponses = this.state.collectedResponses.concat(response);
@@ -68,7 +57,7 @@ class StatementList extends Component {
           collectedResponses: collectedResponses
         },
         () => {
-          console.log(this.state.collectedResponses);
+          //console.log(this.state.collectedResponses);
         }
       );
     }
@@ -122,7 +111,6 @@ class StatementList extends Component {
   };
 
   postAnswer = response => {
-    console.log(response);
     const data = {
       statement: response.statementId,
       displayTime: response.displayTime,
@@ -131,15 +119,12 @@ class StatementList extends Component {
       initialTimestamp: response.initialTimestamp,
       finalChoice: response.finalChoice,
       finalTimestamp: response.finalTimestamp,
-      text: "test"
+      text: "app-" + this.state.appId
     };
-    //console.log(data);
 
     axios
       .post(CONSTANTS.URL_RESPONSES, JSON.stringify(data))
-      .then(res => {
-        console.log(res);
-      })
+      .then(res => {})
       .catch(error => {
         console.log(error);
       });
@@ -162,6 +147,7 @@ class StatementList extends Component {
             <Statement
               onResponseSelected={this.onResponseSelected}
               id={statement.id}
+              appId={this.state.appId}
               text={statement.text}
               responses={statement.responses}
               progress={this.progress}
